@@ -1,71 +1,74 @@
 <!DOCTYPE html>
-<html lang="my">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MLBB BRL Coin Table with MMK Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MLBB BRL Coin Table Calculator</title>
   <style>
     body {
       font-family: sans-serif;
-      background-color: #e0f0ff;
-      max-width: 95vw;
-      margin: 0 auto;
-      padding: 10px;
-    }
-    .top-bar {
-      background: #007bff;
-      color: white;
-      padding: 10px;
-      font-size: 14px;
-      text-align: center;
-      border-radius: 10px;
-      font-weight: bold;
-    }
-    h2 {
-      margin: 20px 0 10px;
-      font-size: 15px;
-    }
-    input {
-      width: 100%;
-      padding: 5px;
-      font-size: 11px;
-      margin-bottom: 12px;
+      background-color: #e5f0ff;
+      padding: 20px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 10px;
+      background: white;
     }
     th, td {
-      border: 1px solid #ccc;
-      padding: 3px;
+      border: 1px solid #999;
+      padding: 8px;
       text-align: center;
-      font-size: 11px;
     }
     th {
-      background-color: #007bff;
+      background-color: #0a63ff;
       color: white;
     }
-    tbody tr:nth-child(even) {
-      background-color: #f9f9f9;
+    tr:nth-child(even) {
+      background-color: #f2f9ff;
     }
-    .highlight {
-      background-color: limegreen;
+    .double-dp {
+      background-color: #27c400;
       color: white;
       font-weight: bold;
-      text-align: center;
+    }
+    input, select {
+      padding: 6px;
+      font-size: 16px;
+      margin: 10px 0;
     }
   </style>
 </head>
 <body>
-  <div class="top-bar">
-    RPC - Digital Store မှ ဝန်ဆောင်မှု့ပေးသည်
+
+  <div style="background: #005ce6; color: white; padding: 10px; font-size: 18px; font-weight: bold;">
+    RPC – Digital Store မှဝန်ဆောင်မှုများပေးသည်
   </div>
 
   <h2>💰 MLBB BRL Coin Table Calculator</h2>
+  <label>MMK ထည့်ပါ (ကြိုက်တဲ့မည်သည့် Smile one Code ထည့်ပြီးတွက်ရန်):</label><br>
+  <input type="number" id="mmkInput" placeholder="ဥပမာ - 78400" />
 
-  <label>MMK ထည့်ပါ (ကိုယ်ဝယ်ယူခဲ့တဲ့Codeစျေးထည့်ပါ):</label>
-  <input type="number" id="mmkInput" placeholder="ဥပမာ - 7****" oninput="updateMMKResults()" />
+  <br>
+  <label>အမြတ် % ရွေးပါ:</label>
+  <select id="profitSelect">
+    <option value="0">0%</option>
+    <option value="1">1%</option>
+    <option value="2">2%</option>
+    <option value="3">3%</option>
+    <option value="4">4%</option>
+    <option value="5">5%</option>
+    <option value="6">6%</option>
+    <option value="7">7%</option>
+    <option value="8">8%</option>
+    <option value="9">9%</option>
+    <option value="10">10%</option>
+    <option value="11">11%</option>
+    <option value="12">12%</option>
+    <option value="13">13%</option>
+    <option value="14">14%</option>
+    <option value="15">15%</option>
+  </select>
 
   <table>
     <thead>
@@ -75,74 +78,113 @@
         <th>Org Dia Plan</th>
         <th>Coin Price</th>
         <th>MMK Result</th>
+        <th>အမြတ်</th>
+        <th>Total MMK</th>
       </tr>
     </thead>
-    <tbody id="planTable"></tbody>
+    <tbody id="tableBody">
+      <!-- Rows go here -->
+    </tbody>
   </table>
+
+  <br>
+  <div>
+    📞 ဆက်သွယ်ရန် - <a href="https://t.me/classic_owner_23" target="_blank">@classic_owner_23</a><br>
+    🛒 Smile One ဝယ်ယူရန် - 
+    <a href="https://t.me/+Kvd-2ulpM9AzMjI1" target="_blank">
+      https://t.me/+Kvd-2ulpM9AzMjI1
+    </a>
+  </div>
 
   <script>
     const plans = [
-      { no: "", dia: "Weekly Pass", org: "", brl: 76 },
-      { no: "", dia: "Twilight Pass", org: "", brl: 402.5 },
-      { no: 1, dia: 86, org: "78+8", brl: 61.5 },
-      { no: 2, dia: 172, org: "156+16", brl: 122 },
-      { no: 3, dia: 257, org: "234+23", brl: 177.5 },
-      { no: 4, dia: 343, org: "257+86", brl: 239 },
-      { no: 5, dia: 429, org: "257+172", brl: 299.5 },
-      { no: 6, dia: 514, org: "257+257", brl: 355 },
-      { no: 7, dia: 600, org: "514+86", brl: 416.5 },
-      { no: 8, dia: 706, org: "625+81", brl: 480 },
-      { no: 9, dia: 878, org: "706+172", brl: 602 },
-      { no: 10, dia: 963, org: "706+257", brl: 657.5 },
-      { no: 11, dia: 1049, org: "706+343", brl: 719 },
-      { no: 12, dia: 1135, org: "706+429", brl: 779.5 },
-      { no: 13, dia: 2195, org: "1860+335", brl: 1453 },
-      { no: 14, dia: 2901, org: "2195+706", brl: 1933 },
-      { no: 15, dia: 3688, org: "3099+589", brl: 2424 },
-      { no: 16, dia: 5532, org: "4649+883", brl: 3660 },
-      { no: 17, dia: 9288, org: "7740+1548", brl: 6079 },
-      { isDivider: true },
-      { no: 18, dia: "50+", org: "", brl: 39 },
-      { no: 19, dia: "150+", org: "", brl: 116.9 },
-      { no: 20, dia: "250+", org: "-", brl: 187.5 },
-      { no: 21, dia: "500+", org: "", brl: 385 }
+      ['Weekly Pass', '', 76],
+      ['Twilight Pass', '', 402.5],
+      ['86', '78+8', 61.5],
+      ['172', '156+16', 122],
+      ['257', '234+23', 177.5],
+      ['343', '257+86', 239],
+      ['429', '257+172', 299.5],
+      ['514', '257+257', 355],
+      ['600', '514+86', 416.5],
+      ['706', '625+81', 480],
+      ['878', '706+172', 602],
+      ['963', '706+257', 657.5],
+      ['1049', '706+343', 719],
+      ['1135', '706+429', 779.5],
+      ['2195', '1860+335', 1453],
+      ['2901', '2195+706', 1933],
+      ['3688', '3099+589', 2424],
+      ['5532', '4649+883', 3660],
+      ['9288', '7740+1548', 6079],
+      ['50+', '', 39],
+      ['150+', '', 116.9],
+      ['250+', '', 187.5],
+      ['500+', '', 385]
     ];
 
-    function updateMMKResults() {
-      const mmk = parseFloat(document.getElementById("mmkInput").value);
-      const tbody = document.getElementById("planTable");
-      tbody.innerHTML = "";
+    const tbody = document.getElementById('tableBody');
+    const mmkInput = document.getElementById('mmkInput');
+    const profitSelect = document.getElementById('profitSelect');
 
-      for (let plan of plans) {
-        if (plan.isDivider) {
-          tbody.innerHTML += `<tr><td colspan="5" class="highlight">Double Dia Plan</td></tr>`;
-          continue;
+    function createTable() {
+      tbody.innerHTML = '';
+      plans.forEach((plan, index) => {
+        const tr = document.createElement('tr');
+        if (plan[0] === '50+') {
+          const td = document.createElement('td');
+          td.colSpan = 7;
+          td.className = 'double-dp';
+          td.textContent = 'Double Dia Plan';
+          const trBreak = document.createElement('tr');
+          trBreak.appendChild(td);
+          tbody.appendChild(trBreak);
         }
-        const mmkResult = isNaN(mmk) ? "-" : ((mmk / 1000) * plan.brl).toFixed(2) + " MMK";
-        const row = `<tr>
-          <td>${plan.no || ""}</td>
-          <td>${plan.dia}</td>
-          <td>${plan.org}</td>
-          <td>${plan.brl}</td>
-          <td>${mmkResult}</td>
-        </tr>`;
-        tbody.innerHTML += row;
+        const mmkResult = document.createElement('td');
+        const profitCell = document.createElement('td');
+        const totalCell = document.createElement('td');
+
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${plan[0]}</td>
+          <td>${plan[1]}</td>
+          <td>${plan[2]}</td>
+        `;
+        tr.appendChild(mmkResult);
+        tr.appendChild(profitCell);
+        tr.appendChild(totalCell);
+        tbody.appendChild(tr);
+      });
+    }
+
+    function updateTable() {
+      const mmk = parseFloat(mmkInput.value);
+      const refBRL = 1000;
+      const percent = parseFloat(profitSelect.value);
+      const rows = tbody.querySelectorAll('tr');
+
+      let dataIndex = 0;
+      for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].children;
+        if (cells.length < 7) continue;
+
+        const coinPrice = parseFloat(plans[dataIndex][2]);
+        const mmkValue = ((mmk / refBRL) * coinPrice).toFixed(2);
+        const profit = (mmkValue * percent / 100).toFixed(2);
+        const total = (parseFloat(mmkValue) + parseFloat(profit)).toFixed(2);
+
+        cells[4].textContent = mmk ? mmkValue : '-';
+        cells[5].textContent = mmk ? profit : '-';
+        cells[6].textContent = mmk ? total : '-';
+
+        dataIndex++;
       }
     }
 
-    updateMMKResults();
+    mmkInput.addEventListener('input', updateTable);
+    profitSelect.addEventListener('change', updateTable);
+
+    createTable();
   </script>
-
-  <div style="margin-top: 20px; padding-top: 10px; border-top: 1px solid #ccc;">
-    <h3 style="font-size: 12px;">📞 ဆက်သွယ်ရန်</h3>
-    <p style="font-size: 11px;">Telegram: <a href="https://t.me/classic_owner_23" target="_blank">@classic_owner_23</a></p>
-
-    <h3 style="font-size: 12px;">🛒 Smile One ဝယ်ရန်</h3>
-    <p style="font-size: 11px;">
-      <a href="https://t.me/+Kvd-2ulpM9AzMjI1" target="_blank">
-        👉 ဒီမှာနှိပ်ပြီး ဝယ်နိုင်ပါတယ် (Telegram Group)
-      </a>
-    </p>
-  </div>
 </body>
 </html>
