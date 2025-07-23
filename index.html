@@ -11,20 +11,17 @@
       max-width: 100%;
       overflow-x: auto;
     }
-
     table {
       width: 100%;
       border-collapse: collapse;
       background: white;
       font-size: 11px;
     }
-
     th, td {
       border: 1px solid #999;
       padding: 3px;
       text-align: center;
     }
-
     input, select {
       padding: 3px;
       font-size: 12px;
@@ -32,124 +29,55 @@
       width: 100%;
       box-sizing: border-box;
     }
-
+    #profitSelect {
+      font-size: 11px; /* 👈 Smaller % text */
+    }
     .container {
       max-width: 100%;
       overflow-x: auto;
     }
-
     .topbar {
       color: white;
       padding: 6px;
       font-size: 14px;
       font-weight: bold;
     }
-
     .double-dp {
       color: white;
       font-weight: bold;
     }
 
-    /* =====================
-       THEME STYLES BELOW
-       ===================== */
+    /* Theme Styles */
+    body.theme-blue { background-color: #e5f0ff; }
+    body.theme-blue .topbar { background-color: #005ce6; }
+    body.theme-blue th { background-color: #0a63ff; color: white; }
+    body.theme-blue tr:nth-child(even) { background-color: #f2f9ff; }
+    body.theme-blue .double-dp { background-color: #27c400; }
 
-    /* Default - Blue + Green */
-    body.theme-blue {
-      background-color: #e5f0ff;
-    }
+    body.theme-purple { background-color: #f3e8ff; }
+    body.theme-purple .topbar { background-color: #9333ea; }
+    body.theme-purple th { background-color: #a855f7; color: white; }
+    body.theme-purple tr:nth-child(even) { background-color: #f5f3ff; }
+    body.theme-purple .double-dp { background-color: #9333ea; }
 
-    body.theme-blue .topbar {
-      background-color: #005ce6;
-    }
+    body.theme-green { background-color: #d1fae5; }
+    body.theme-green .topbar { background-color: #059669; }
+    body.theme-green th { background-color: #34d399; color: white; }
+    body.theme-green tr:nth-child(even) { background-color: #ecfdf5; }
+    body.theme-green .double-dp { background-color: #059669; }
 
-    body.theme-blue th {
-      background-color: #0a63ff;
-      color: white;
-    }
+    body.theme-pink { background-color: #ffe4e6; }
+    body.theme-pink .topbar { background-color: #f43f5e; }
+    body.theme-pink th { background-color: #fb7185; color: white; }
+    body.theme-pink tr:nth-child(even) { background-color: #fff1f2; }
+    body.theme-pink .double-dp { background-color: #f43f5e; }
 
-    body.theme-blue tr:nth-child(even) {
-      background-color: #f2f9ff;
-    }
-
-    body.theme-blue .double-dp {
-      background-color: #27c400;
-    }
-
-    /* Sakura Purple */
-    body.theme-purple {
-      background-color: #f3e8ff;
-    }
-
-    body.theme-purple .topbar {
-      background-color: #9333ea;
-    }
-
-    body.theme-purple th {
-      background-color: #a855f7;
-      color: white;
-    }
-
-    body.theme-purple tr:nth-child(even) {
-      background-color: #f5f3ff;
-    }
-
-    body.theme-purple .double-dp {
-      background-color: #9333ea;
-    }
-
-    /* Mint Green */
-    body.theme-green {
-      background-color: #d1fae5;
-    }
-
-    body.theme-green .topbar {
-      background-color: #059669;
-    }
-
-    body.theme-green th {
-      background-color: #34d399;
-      color: white;
-    }
-
-    body.theme-green tr:nth-child(even) {
-      background-color: #ecfdf5;
-    }
-
-    body.theme-green .double-dp {
-      background-color: #059669;
-    }
-
-    /* Peach Pink */
-    body.theme-pink {
-      background-color: #ffe4e6;
-    }
-
-    body.theme-pink .topbar {
-      background-color: #f43f5e;
-    }
-
-    body.theme-pink th {
-      background-color: #fb7185;
-      color: white;
-    }
-
-    body.theme-pink tr:nth-child(even) {
-      background-color: #fff1f2;
-    }
-
-    body.theme-pink .double-dp {
-      background-color: #f43f5e;
-    }
-
-    /* Theme Switch Buttons */
     .theme-buttons {
       margin: 10px 0;
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
     }
-
     .theme-buttons button {
       padding: 6px 12px;
       font-size: 12px;
@@ -159,7 +87,6 @@
       color: white;
       font-weight: bold;
     }
-
     .blue { background-color: #0a63ff; }
     .purple { background-color: #a855f7; }
     .green { background-color: #34d399; }
@@ -168,11 +95,8 @@
 </head>
 <body class="theme-blue">
 
-  <div class="topbar">
-    RPC – Digital Store မှဝန်ဆောင်မှုများပေးသည်
-  </div>
+  <div class="topbar">RPC – Digital Store မှဝန်ဆောင်မှုများပေးသည်</div>
 
-  <!-- 🌈 Theme Switcher -->
   <div class="theme-buttons">
     <button class="blue" onclick="setTheme('theme-blue')">💙 Blue</button>
     <button class="purple" onclick="setTheme('theme-purple')">🌸 Sakura</button>
@@ -181,26 +105,42 @@
   </div>
 
   <h2 style="font-size: 15px;">💰 MLBB BRL Coin Table Calculator</h2>
-  <label>MMK ထည့်ပါ (ကိုယ်ဝယ်ခဲ့တဲ့ Smile Codeစျေးထည့်ပြီးတွက်ရန်):</label>
+
+  <label>MMK ထည့်ပါ:</label>
   <input type="number" id="mmkInput" placeholder="ဥပမာ - 7****" />
 
   <label>အမြတ် % ရွေးပါ:</label>
   <select id="profitSelect">
     <option value="0">0%</option>
+    <option value="0.5">0.5%</option>
     <option value="1">1%</option>
+    <option value="1.5">1.5%</option>
     <option value="2">2%</option>
+    <option value="2.5">2.5%</option>
     <option value="3">3%</option>
+    <option value="3.5">3.5%</option>
     <option value="4">4%</option>
+    <option value="4.5">4.5%</option>
     <option value="5">5%</option>
+    <option value="5.5">5.5%</option>
     <option value="6">6%</option>
+    <option value="6.5">6.5%</option>
     <option value="7">7%</option>
+    <option value="7.5">7.5%</option>
     <option value="8">8%</option>
+    <option value="8.5">8.5%</option>
     <option value="9">9%</option>
+    <option value="9.5">9.5%</option>
     <option value="10">10%</option>
+    <option value="10.5">10.5%</option>
     <option value="11">11%</option>
+    <option value="11.5">11.5%</option>
     <option value="12">12%</option>
+    <option value="12.5">12.5%</option>
     <option value="13">13%</option>
+    <option value="13.5">13.5%</option>
     <option value="14">14%</option>
+    <option value="14.5">14.5%</option>
     <option value="15">15%</option>
   </select>
 
@@ -224,37 +164,17 @@
   <br>
   <div style="font-size: 12px;">
     📞 ဆက်သွယ်ရန် - <a href="https://t.me/classic_owner_23" target="_blank">@classic_owner_23</a><br>
-    🛒 Smile One ဝယ်ယူရန် -
-    <a href="https://t.me/+Kvd-2ulpM9AzMjI1" target="_blank">
-      https://t.me/+Kvd-2ulpM9AzMjI1
-    </a>
+    🛒 Smile One ဝယ်ယူရန် - <a href="https://t.me/+Kvd-2ulpM9AzMjI1" target="_blank">https://t.me/+Kvd-2ulpM9AzMjI1</a>
   </div>
 
   <script>
     const plans = [
-      ['Weekly Pass', '', 76],
-      ['Twilight Pass', '', 402.5],
-      ['86', '78+8', 61.5],
-      ['172', '156+16', 122],
-      ['257', '234+23', 177.5],
-      ['343', '257+86', 239],
-      ['429', '257+172', 299.5],
-      ['514', '257+257', 355],
-      ['600', '514+86', 416.5],
-      ['706', '625+81', 480],
-      ['878', '706+172', 602],
-      ['963', '706+257', 657.5],
-      ['1049', '706+343', 719],
-      ['1135', '706+429', 779.5],
-      ['2195', '1860+335', 1453],
-      ['2901', '2195+706', 1933],
-      ['3688', '3099+589', 2424],
-      ['5532', '4649+883', 3660],
-      ['9288', '7740+1548', 6079],
-      ['50+', '', 39],
-      ['150+', '', 116.9],
-      ['250+', '', 187.5],
-      ['500+', '', 385]
+      ['Weekly Pass', '', 76], ['Twilight Pass', '', 402.5], ['86', '78+8', 61.5], ['172', '156+16', 122],
+      ['257', '234+23', 177.5], ['343', '257+86', 239], ['429', '257+172', 299.5], ['514', '257+257', 355],
+      ['600', '514+86', 416.5], ['706', '625+81', 480], ['878', '706+172', 602], ['963', '706+257', 657.5],
+      ['1049', '706+343', 719], ['1135', '706+429', 779.5], ['2195', '1860+335', 1453], ['2901', '2195+706', 1933],
+      ['3688', '3099+589', 2424], ['5532', '4649+883', 3660], ['9288', '7740+1548', 6079], ['50+', '', 39],
+      ['150+', '', 116.9], ['250+', '', 187.5], ['500+', '', 385]
     ];
 
     const tbody = document.getElementById('tableBody');
@@ -315,14 +235,13 @@
       }
     }
 
-    mmkInput.addEventListener('input', updateTable);
-    profitSelect.addEventListener('change', updateTable);
-    createTable();
-
-    // Theme Switcher Logic
     function setTheme(themeName) {
       document.body.className = themeName;
     }
+
+    mmkInput.addEventListener('input', updateTable);
+    profitSelect.addEventListener('change', updateTable);
+    createTable();
   </script>
 </body>
 </html>
