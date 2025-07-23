@@ -30,7 +30,7 @@
       box-sizing: border-box;
     }
     #profitSelect {
-      font-size: 11px; /* 👈 Smaller % text */
+      font-size: 10px;
     }
     .container {
       max-width: 100%;
@@ -47,7 +47,7 @@
       font-weight: bold;
     }
 
-    /* Theme Styles */
+    /* Themes */
     body.theme-blue { background-color: #e5f0ff; }
     body.theme-blue .topbar { background-color: #005ce6; }
     body.theme-blue th { background-color: #0a63ff; color: white; }
@@ -78,6 +78,7 @@
       gap: 8px;
       flex-wrap: wrap;
     }
+
     .theme-buttons button {
       padding: 6px 12px;
       font-size: 12px;
@@ -87,6 +88,7 @@
       color: white;
       font-weight: bold;
     }
+
     .blue { background-color: #0a63ff; }
     .purple { background-color: #a855f7; }
     .green { background-color: #34d399; }
@@ -105,43 +107,24 @@
   </div>
 
   <h2 style="font-size: 15px;">💰 MLBB BRL Coin Table Calculator</h2>
-
-  <label>ဝယ်ယူခဲ့တဲ့Smile codeစျေးနူန်းထည့်ပါ:</label>
+  <label>ကိုယ်ဝယ်ယူခဲ့တဲ့Smile codeစျေး ထည့်ပါ:</label>
   <input type="number" id="mmkInput" placeholder="ဥပမာ - 7****" />
 
   <label>အမြတ် % ရွေးပါ:</label>
   <select id="profitSelect">
-    <option value="0">0%</option>
-    <option value="0.5">0.5%</option>
-    <option value="1">1%</option>
-    <option value="1.5">1.5%</option>
-    <option value="2">2%</option>
-    <option value="2.5">2.5%</option>
-    <option value="3">3%</option>
-    <option value="3.5">3.5%</option>
-    <option value="4">4%</option>
-    <option value="4.5">4.5%</option>
-    <option value="5">5%</option>
-    <option value="5.5">5.5%</option>
-    <option value="6">6%</option>
-    <option value="6.5">6.5%</option>
-    <option value="7">7%</option>
-    <option value="7.5">7.5%</option>
-    <option value="8">8%</option>
-    <option value="8.5">8.5%</option>
-    <option value="9">9%</option>
-    <option value="9.5">9.5%</option>
-    <option value="10">10%</option>
-    <option value="10.5">10.5%</option>
-    <option value="11">11%</option>
-    <option value="11.5">11.5%</option>
-    <option value="12">12%</option>
-    <option value="12.5">12.5%</option>
-    <option value="13">13%</option>
-    <option value="13.5">13.5%</option>
-    <option value="14">14%</option>
-    <option value="14.5">14.5%</option>
-    <option value="15">15%</option>
+    <!-- Options 0% to 15% by 0.5% step -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const select = document.getElementById("profitSelect");
+        for (let i = 0; i <= 30; i++) {
+          const val = (i * 0.5).toFixed(1).replace(".0", "");
+          const opt = document.createElement("option");
+          opt.value = val;
+          opt.textContent = val + "%";
+          select.appendChild(opt);
+        }
+      });
+    </script>
   </select>
 
   <div class="container">
@@ -162,19 +145,31 @@
   </div>
 
   <br>
+  <!-- ✅ Updated Contact Section with Buttons -->
   <div style="font-size: 12px;">
-    📞 ဆက်သွယ်ရန် - <a href="https://t.me/classic_owner_23" target="_blank">@classic_owner_23</a><br>
-    🛒 Smile One ဝယ်ယူရန် - <a href="https://t.me/+Kvd-2ulpM9AzMjI1" target="_blank">https://t.me/+Kvd-2ulpM9AzMjI1</a>
+    <a href="https://t.me/classic_owner_23" target="_blank">
+      <button style="background-color:#9333ea; color:white; padding:6px 12px; border:none; border-radius:5px; font-size:12px; cursor:pointer;">
+        📞 ဆက်သွယ်ရန် - @classic_owner_23
+      </button>
+    </a>
+    <br><br>
+    <a href="https://t.me/+Kvd-2ulpM9AzMjI1" target="_blank">
+      <button style="background-color:#059669; color:white; padding:6px 12px; border:none; border-radius:5px; font-size:12px; cursor:pointer;">
+        🛒 Smile One ဝယ်ယူရန်
+      </button>
+    </a>
   </div>
 
   <script>
     const plans = [
-      ['Weekly Pass', '', 76], ['Twilight Pass', '', 402.5], ['86', '78+8', 61.5], ['172', '156+16', 122],
-      ['257', '234+23', 177.5], ['343', '257+86', 239], ['429', '257+172', 299.5], ['514', '257+257', 355],
-      ['600', '514+86', 416.5], ['706', '625+81', 480], ['878', '706+172', 602], ['963', '706+257', 657.5],
-      ['1049', '706+343', 719], ['1135', '706+429', 779.5], ['2195', '1860+335', 1453], ['2901', '2195+706', 1933],
-      ['3688', '3099+589', 2424], ['5532', '4649+883', 3660], ['9288', '7740+1548', 6079], ['50+', '', 39],
-      ['150+', '', 116.9], ['250+', '', 187.5], ['500+', '', 385]
+      ['Weekly Pass', '', 76], ['Twilight Pass', '', 402.5], ['86', '78+8', 61.5],
+      ['172', '156+16', 122], ['257', '234+23', 177.5], ['343', '257+86', 239],
+      ['429', '257+172', 299.5], ['514', '257+257', 355], ['600', '514+86', 416.5],
+      ['706', '625+81', 480], ['878', '706+172', 602], ['963', '706+257', 657.5],
+      ['1049', '706+343', 719], ['1135', '706+429', 779.5], ['2195', '1860+335', 1453],
+      ['2901', '2195+706', 1933], ['3688', '3099+589', 2424], ['5532', '4649+883', 3660],
+      ['9288', '7740+1548', 6079], ['50+', '', 39], ['150+', '', 116.9],
+      ['250+', '', 187.5], ['500+', '', 385]
     ];
 
     const tbody = document.getElementById('tableBody');
@@ -194,6 +189,7 @@
           trBreak.appendChild(td);
           tbody.appendChild(trBreak);
         }
+
         const mmkResult = document.createElement('td');
         const profitCell = document.createElement('td');
         const totalCell = document.createElement('td');
