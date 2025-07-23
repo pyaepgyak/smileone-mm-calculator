@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="my">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -7,142 +7,192 @@
   <style>
     body {
       font-family: sans-serif;
-      background-color: #e6f0ff;
-      margin: 0;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 24px;
+      background-color: #e5f0ff;
+      padding: 10px;
+      max-width: 100%;
+      overflow-x: auto;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 10px;
+      background: white;
+      font-size: 13px;
     }
     th, td {
       border: 1px solid #999;
-      padding: 8px;
+      padding: 6px;
       text-align: center;
     }
     th {
-      background-color: #007bff;
+      background-color: #0a63ff;
       color: white;
     }
     tr:nth-child(even) {
-      background-color: #f2f2f2;
+      background-color: #f2f9ff;
     }
-    select, input {
-      padding: 5px;
-      font-size: 16px;
-    }
-    .header {
-      background-color: #0066cc;
+    .double-dp {
+      background-color: #27c400;
       color: white;
-      padding: 10px;
-      text-align: center;
       font-weight: bold;
-      margin-bottom: 10px;
+    }
+    input, select {
+      padding: 5px;
+      font-size: 14px;
+      margin: 8px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .container {
+      max-width: 100%;
+      overflow-x: auto;
     }
   </style>
 </head>
 <body>
 
-<div class="header">RPC – Digital Store မှဝန်ဆောင်မှုပေးသည်</div>
+  <div style="background: #005ce6; color: white; padding: 10px; font-size: 16px; font-weight: bold;">
+    RPC – Digital Store မှဝန်ဆောင်မှုများပေးသည်
+  </div>
 
-<h1>💰 MLBB BRL Coin Table Calculator</h1>
+  <h2 style="font-size: 18px;">💰 MLBB BRL Coin Table Calculator</h2>
+  <label>MMK ထည့်ပါ (ကြိုက်တဲ့မည်သည့် Smile one Code ထည့်ပြီးတွက်ရန်):</label>
+  <input type="number" id="mmkInput" placeholder="ဥပမာ - 78400" />
 
-<p>
-  MMK ထည့်ပါ (ကြိုက်တဲ့မည်သည့် Smile one Code ထည့်မှသာလုပ်နိုင်သည်):<br/>
-  <input type="number" id="mmkInput" value="78400" />
-</p>
-
-<p>
-  အမြတ် % ရွေးပါ:
+  <label>အမြတ် % ရွေးပါ:</label>
   <select id="profitSelect">
-    ${[...Array(16).keys()].map(i => `<option value="${i}">${i}%</option>`).join('')}
+    <option value="0">0%</option>
+    <option value="1">1%</option>
+    <option value="2">2%</option>
+    <option value="3">3%</option>
+    <option value="4">4%</option>
+    <option value="5">5%</option>
+    <option value="6">6%</option>
+    <option value="7">7%</option>
+    <option value="8">8%</option>
+    <option value="9">9%</option>
+    <option value="10">10%</option>
+    <option value="11">11%</option>
+    <option value="12">12%</option>
+    <option value="13">13%</option>
+    <option value="14">14%</option>
+    <option value="15">15%</option>
   </select>
-</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>No.</th>
-      <th>Dia Plan</th>
-      <th>Org Dia Plan</th>
-      <th>Coin Price</th>
-      <th>MMK Result</th>
-      <th>အမြတ်</th>
-      <th>Total MMK</th>
-    </tr>
-  </thead>
-  <tbody id="dataTable">
-    <!-- Rows will be inserted by JS -->
-  </tbody>
-</table>
+  <div class="container">
+    <table>
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Dia Plan</th>
+          <th>Org Dia Plan</th>
+          <th>Coin Price</th>
+          <th>MMK Result</th>
+          <th>အမြတ်</th>
+          <th>Total MMK</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
 
-<br/><br/>
-<p>📞 ဆက်သွယ်ရန်: <a href="https://t.me/classic_owner_23" target="_blank">@classic_owner_23</a></p>
-<p>🛒 Smile One ဝယ်ယူရန်: 
-  <a href="https://t.me/+Kvd-2ulpM9AzMjI1" target="_blank">
-    👉 ဒီမှာနှိပ်ပြီး ဝယ်နိုင်ပါတယ် (Telegram Group)
-  </a>
-</p>
+  <br>
+  <div style="font-size: 14px;">
+    📞 ဆက်သွယ်ရန် - <a href="https://t.me/classic_owner_23" target="_blank">@classic_owner_23</a><br>
+    🛒 Smile One ဝယ်ယူရန် - 
+    <a href="https://t.me/+Kvd-2ulpM9AzMjI1" target="_blank">
+      https://t.me/+Kvd-2ulpM9AzMjI1
+    </a>
+  </div>
 
-<script>
-const plans = [
-  ["Weekly Pass", "", 76],
-  ["Twilight Pass", "", 402.5],
-  ["86", "78+8", 61.5],
-  ["172", "156+16", 122],
-  ["257", "234+23", 177.5],
-  ["343", "257+86", 239],
-  ["429", "257+172", 299.5],
-  ["514", "257+257", 355],
-  ["600", "514+86", 416.5],
-  ["706", "625+81", 480],
-  ["878", "706+172", 602],
-  ["963", "706+257", 657.5],
-  ["1049", "706+343", 719],
-  ["1135", "706+429", 779.5],
-  ["2195", "1860+335", 1453],
-  ["2901", "2195+706", 1933],
-  ["3688", "3099+589", 2424],
-  ["5532", "4649+883", 3660],
-  ["9288", "7740+1548", 6079],
-  ["50+", "", 39],
-  ["150+", "", 116.9],
-  ["250+", "", 187.5],
-  ["500+", "", 385]
-];
+  <script>
+    const plans = [
+      ['Weekly Pass', '', 76],
+      ['Twilight Pass', '', 402.5],
+      ['86', '78+8', 61.5],
+      ['172', '156+16', 122],
+      ['257', '234+23', 177.5],
+      ['343', '257+86', 239],
+      ['429', '257+172', 299.5],
+      ['514', '257+257', 355],
+      ['600', '514+86', 416.5],
+      ['706', '625+81', 480],
+      ['878', '706+172', 602],
+      ['963', '706+257', 657.5],
+      ['1049', '706+343', 719],
+      ['1135', '706+429', 779.5],
+      ['2195', '1860+335', 1453],
+      ['2901', '2195+706', 1933],
+      ['3688', '3099+589', 2424],
+      ['5532', '4649+883', 3660],
+      ['9288', '7740+1548', 6079],
+      ['50+', '', 39],
+      ['150+', '', 116.9],
+      ['250+', '', 187.5],
+      ['500+', '', 385]
+    ];
 
-function updateTable() {
-  const mmk = parseFloat(document.getElementById("mmkInput").value) || 0;
-  const profitPercent = parseFloat(document.getElementById("profitSelect").value);
-  const tbody = document.getElementById("dataTable");
-  tbody.innerHTML = "";
+    const tbody = document.getElementById('tableBody');
+    const mmkInput = document.getElementById('mmkInput');
+    const profitSelect = document.getElementById('profitSelect');
 
-  plans.forEach((plan, index) => {
-    const mmkResult = ((mmk / 1000) * plan[2]).toFixed(2);
-    const profit = ((mmkResult * profitPercent) / 100).toFixed(2);
-    const total = (parseFloat(mmkResult) + parseFloat(profit)).toFixed(2);
+    function createTable() {
+      tbody.innerHTML = '';
+      plans.forEach((plan, index) => {
+        const tr = document.createElement('tr');
+        if (plan[0] === '50+') {
+          const td = document.createElement('td');
+          td.colSpan = 7;
+          td.className = 'double-dp';
+          td.textContent = 'Double Dia Plan';
+          const trBreak = document.createElement('tr');
+          trBreak.appendChild(td);
+          tbody.appendChild(trBreak);
+        }
+        const mmkResult = document.createElement('td');
+        const profitCell = document.createElement('td');
+        const totalCell = document.createElement('td');
 
-    const row = `<tr>
-      <td>${index + 1}</td>
-      <td>${plan[0]}</td>
-      <td>${plan[1]}</td>
-      <td>${plan[2]}</td>
-      <td>${mmkResult}</td>
-      <td>${profit}</td>
-      <td>${total}</td>
-    </tr>`;
-    tbody.innerHTML += row;
-  });
-}
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${plan[0]}</td>
+          <td>${plan[1]}</td>
+          <td>${plan[2]}</td>
+        `;
+        tr.appendChild(mmkResult);
+        tr.appendChild(profitCell);
+        tr.appendChild(totalCell);
+        tbody.appendChild(tr);
+      });
+    }
 
-document.getElementById("mmkInput").addEventListener("input", updateTable);
-document.getElementById("profitSelect").addEventListener("change", updateTable);
-updateTable();
-</script>
+    function updateTable() {
+      const mmk = parseFloat(mmkInput.value);
+      const refBRL = 1000;
+      const percent = parseFloat(profitSelect.value);
+      const rows = tbody.querySelectorAll('tr');
 
+      let dataIndex = 0;
+      for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].children;
+        if (cells.length < 7) continue;
+
+        const coinPrice = parseFloat(plans[dataIndex][2]);
+        const mmkValue = ((mmk / refBRL) * coinPrice).toFixed(2);
+        const profit = (mmkValue * percent / 100).toFixed(2);
+        const total = (parseFloat(mmkValue) + parseFloat(profit)).toFixed(2);
+
+        cells[4].textContent = mmk ? mmkValue : '-';
+        cells[5].textContent = mmk ? profit : '-';
+        cells[6].textContent = mmk ? total : '-';
+
+        dataIndex++;
+      }
+    }
+
+    mmkInput.addEventListener('input', updateTable);
+    profitSelect.addEventListener('change', updateTable);
+
+    createTable();
+  </script>
 </body>
 </html>
