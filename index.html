@@ -7,7 +7,6 @@
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #e5f0ff;
       padding: 6px;
       max-width: 100%;
       overflow-x: auto;
@@ -26,21 +25,6 @@
       text-align: center;
     }
 
-    th {
-      background-color: #0a63ff;
-      color: white;
-    }
-
-    tr:nth-child(even) {
-      background-color: #f2f9ff;
-    }
-
-    .double-dp {
-      background-color: #27c400;
-      color: white;
-      font-weight: bold;
-    }
-
     input, select {
       padding: 3px;
       font-size: 12px;
@@ -55,75 +39,149 @@
     }
 
     .topbar {
-      background: #005ce6;
       color: white;
       padding: 6px;
       font-size: 14px;
       font-weight: bold;
     }
 
-    /* 🌸 PURPLE THEME (Toggle Class) */
-    body.purple-mode {
+    .double-dp {
+      color: white;
+      font-weight: bold;
+    }
+
+    /* =====================
+       THEME STYLES BELOW
+       ===================== */
+
+    /* Default - Blue + Green */
+    body.theme-blue {
+      background-color: #e5f0ff;
+    }
+
+    body.theme-blue .topbar {
+      background-color: #005ce6;
+    }
+
+    body.theme-blue th {
+      background-color: #0a63ff;
+      color: white;
+    }
+
+    body.theme-blue tr:nth-child(even) {
+      background-color: #f2f9ff;
+    }
+
+    body.theme-blue .double-dp {
+      background-color: #27c400;
+    }
+
+    /* Sakura Purple */
+    body.theme-purple {
       background-color: #f3e8ff;
     }
 
-    body.purple-mode th {
-      background-color: #a855f7;
+    body.theme-purple .topbar {
+      background-color: #9333ea;
     }
 
-    body.purple-mode tr:nth-child(even) {
+    body.theme-purple th {
+      background-color: #a855f7;
+      color: white;
+    }
+
+    body.theme-purple tr:nth-child(even) {
       background-color: #f5f3ff;
     }
 
-    body.purple-mode .double-dp {
+    body.theme-purple .double-dp {
       background-color: #9333ea;
     }
 
-    body.purple-mode .topbar {
-      background-color: #9333ea !important;
+    /* Mint Green */
+    body.theme-green {
+      background-color: #d1fae5;
     }
 
-    body.purple-mode input,
-    body.purple-mode select {
-      border: 1px solid #c084fc;
-      background-color: #faf5ff;
+    body.theme-green .topbar {
+      background-color: #059669;
     }
 
-    body.purple-mode label,
-    body.purple-mode h2,
-    body.purple-mode a {
-      color: #7e22ce !important;
-    }
-
-    /* Switch Button */
-    #toggleThemeBtn {
-      background-color: #444;
+    body.theme-green th {
+      background-color: #34d399;
       color: white;
-      border: none;
+    }
+
+    body.theme-green tr:nth-child(even) {
+      background-color: #ecfdf5;
+    }
+
+    body.theme-green .double-dp {
+      background-color: #059669;
+    }
+
+    /* Peach Pink */
+    body.theme-pink {
+      background-color: #ffe4e6;
+    }
+
+    body.theme-pink .topbar {
+      background-color: #f43f5e;
+    }
+
+    body.theme-pink th {
+      background-color: #fb7185;
+      color: white;
+    }
+
+    body.theme-pink tr:nth-child(even) {
+      background-color: #fff1f2;
+    }
+
+    body.theme-pink .double-dp {
+      background-color: #f43f5e;
+    }
+
+    /* Theme Switch Buttons */
+    .theme-buttons {
+      margin: 10px 0;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .theme-buttons button {
       padding: 6px 12px;
-      font-size: 13px;
+      font-size: 12px;
+      border: none;
       border-radius: 5px;
       cursor: pointer;
-      float: right;
-      margin-top: 6px;
+      color: white;
+      font-weight: bold;
     }
 
-    body.purple-mode #toggleThemeBtn {
-      background-color: #9333ea;
-    }
+    .blue { background-color: #0a63ff; }
+    .purple { background-color: #a855f7; }
+    .green { background-color: #34d399; }
+    .pink { background-color: #fb7185; }
   </style>
 </head>
-<body>
+<body class="theme-blue">
 
   <div class="topbar">
     RPC – Digital Store မှဝန်ဆောင်မှုများပေးသည်
   </div>
 
-  <!-- Switch Theme Button -->
-  <button id="toggleThemeBtn">💡 Switch Theme</button>
+  <!-- 🌈 Theme Switcher -->
+  <div class="theme-buttons">
+    <button class="blue" onclick="setTheme('theme-blue')">💙 Blue</button>
+    <button class="purple" onclick="setTheme('theme-purple')">🌸 Sakura</button>
+    <button class="green" onclick="setTheme('theme-green')">🍃 Mint</button>
+    <button class="pink" onclick="setTheme('theme-pink')">🩷 Peach</button>
+  </div>
 
   <h2 style="font-size: 15px;">💰 MLBB BRL Coin Table Calculator</h2>
-  <label>MMK ထည့်ပါ (ကိုယ်ဝယ်ယူခဲ့တဲ့ Smile Code စျေးထည့်ပြီးတွက်ရန်):</label>
+  <label>MMK ထည့်ပါ (ကိုယ်ဝယ်ခဲတဲ့ Smile Codeစျေးထည့်ပြီးတွက်ရန်):</label>
   <input type="number" id="mmkInput" placeholder="ဥပမာ - 7****" />
 
   <label>အမြတ် % ရွေးပါ:</label>
@@ -261,11 +319,10 @@
     profitSelect.addEventListener('change', updateTable);
     createTable();
 
-    // 🌗 Theme Toggle
-    const themeBtn = document.getElementById('toggleThemeBtn');
-    themeBtn.addEventListener('click', () => {
-      document.body.classList.toggle('purple-mode');
-    });
+    // Theme Switcher Logic
+    function setTheme(themeName) {
+      document.body.className = themeName;
+    }
   </script>
 </body>
 </html>
