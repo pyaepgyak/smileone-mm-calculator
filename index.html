@@ -6,35 +6,41 @@
   <title>MLBB BRL Coin Table Calculator</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #e5f0ff;
       padding: 6px;
       max-width: 100%;
       overflow-x: auto;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       background: white;
       font-size: 11px;
     }
+
     th, td {
       border: 1px solid #999;
       padding: 3px;
       text-align: center;
     }
+
     th {
       background-color: #0a63ff;
       color: white;
     }
+
     tr:nth-child(even) {
       background-color: #f2f9ff;
     }
+
     .double-dp {
       background-color: #27c400;
       color: white;
       font-weight: bold;
     }
+
     input, select {
       padding: 3px;
       font-size: 12px;
@@ -42,20 +48,82 @@
       width: 100%;
       box-sizing: border-box;
     }
+
     .container {
       max-width: 100%;
       overflow-x: auto;
+    }
+
+    .topbar {
+      background: #005ce6;
+      color: white;
+      padding: 6px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    /* 🌸 PURPLE THEME (Toggle Class) */
+    body.purple-mode {
+      background-color: #f3e8ff;
+    }
+
+    body.purple-mode th {
+      background-color: #a855f7;
+    }
+
+    body.purple-mode tr:nth-child(even) {
+      background-color: #f5f3ff;
+    }
+
+    body.purple-mode .double-dp {
+      background-color: #9333ea;
+    }
+
+    body.purple-mode .topbar {
+      background-color: #9333ea !important;
+    }
+
+    body.purple-mode input,
+    body.purple-mode select {
+      border: 1px solid #c084fc;
+      background-color: #faf5ff;
+    }
+
+    body.purple-mode label,
+    body.purple-mode h2,
+    body.purple-mode a {
+      color: #7e22ce !important;
+    }
+
+    /* Switch Button */
+    #toggleThemeBtn {
+      background-color: #444;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      font-size: 13px;
+      border-radius: 5px;
+      cursor: pointer;
+      float: right;
+      margin-top: 6px;
+    }
+
+    body.purple-mode #toggleThemeBtn {
+      background-color: #9333ea;
     }
   </style>
 </head>
 <body>
 
-  <div style="background: #005ce6; color: white; padding: 6px; font-size: 14px; font-weight: bold;">
+  <div class="topbar">
     RPC – Digital Store မှဝန်ဆောင်မှုများပေးသည်
   </div>
 
+  <!-- Switch Theme Button -->
+  <button id="toggleThemeBtn">💡 Switch Theme</button>
+
   <h2 style="font-size: 15px;">💰 MLBB BRL Coin Table Calculator</h2>
-  <label>MMK ထည့်ပါ (ကိုယ်ဝယ်ခဲ့တဲ့ Smile one Codeစျေးထည့်ပြီးတွက်ရန်):</label>
+  <label>MMK ထည့်ပါ (ကိုယ်ဝယ်ယူခဲ့တဲ့ Smile Code စျေးထည့်ပြီးတွက်ရန်):</label>
   <input type="number" id="mmkInput" placeholder="ဥပမာ - 7****" />
 
   <label>အမြတ် % ရွေးပါ:</label>
@@ -98,7 +166,7 @@
   <br>
   <div style="font-size: 12px;">
     📞 ဆက်သွယ်ရန် - <a href="https://t.me/classic_owner_23" target="_blank">@classic_owner_23</a><br>
-    🛒 Smile One ဝယ်ယူရန် - 
+    🛒 Smile One ဝယ်ယူရန် -
     <a href="https://t.me/+Kvd-2ulpM9AzMjI1" target="_blank">
       https://t.me/+Kvd-2ulpM9AzMjI1
     </a>
@@ -191,8 +259,13 @@
 
     mmkInput.addEventListener('input', updateTable);
     profitSelect.addEventListener('change', updateTable);
-
     createTable();
+
+    // 🌗 Theme Toggle
+    const themeBtn = document.getElementById('toggleThemeBtn');
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('purple-mode');
+    });
   </script>
 </body>
 </html>
