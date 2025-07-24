@@ -107,25 +107,11 @@
   </div>
 
   <h2 style="font-size: 15px;">💰 MLBB BRL Coin Table Calculator</h2>
-  <label>ကိုယ်ဝယ်ယူခဲ့တဲ့Smile codeစျေး ထည့်ပါ:</label>
+  <label>ကိုယ်ဝယ်ခဲ့တဲ့Smile codeစျေး ထည့်ပါ:</label>
   <input type="number" id="mmkInput" placeholder="ဥပမာ - 7****" />
 
   <label>အမြတ် % ရွေးပါ:</label>
-  <select id="profitSelect">
-    <!-- Options 0% to 15% by 0.5% step -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const select = document.getElementById("profitSelect");
-        for (let i = 0; i <= 30; i++) {
-          const val = (i * 0.5).toFixed(1).replace(".0", "");
-          const opt = document.createElement("option");
-          opt.value = val;
-          opt.textContent = val + "%";
-          select.appendChild(opt);
-        }
-      });
-    </script>
-  </select>
+  <select id="profitSelect"></select>
 
   <div class="container">
     <table>
@@ -145,7 +131,6 @@
   </div>
 
   <br>
-  <!-- ✅ Updated Contact Section with Buttons -->
   <div style="font-size: 12px;">
     <a href="https://t.me/classic_owner_23" target="_blank">
       <button style="background-color:#9333ea; color:white; padding:6px 12px; border:none; border-radius:5px; font-size:12px; cursor:pointer;">
@@ -161,20 +146,31 @@
   </div>
 
   <script>
+    // Insert 0% to 15% options in 0.5 step
+    const profitSelect = document.getElementById("profitSelect");
+    for (let i = 0; i <= 30; i++) {
+      const val = (i * 0.5).toFixed(1).replace(".0", "");
+      const opt = document.createElement("option");
+      opt.value = val;
+      opt.textContent = val + "%";
+      profitSelect.appendChild(opt);
+    }
+
     const plans = [
       ['Weekly Pass', '', 76], ['Twilight Pass', '', 402.5], ['86', '78+8', 61.5],
       ['172', '156+16', 122], ['257', '234+23', 177.5], ['343', '257+86', 239],
       ['429', '257+172', 299.5], ['514', '257+257', 355], ['600', '514+86', 416.5],
       ['706', '625+81', 480], ['878', '706+172', 602], ['963', '706+257', 657.5],
-      ['1049', '706+343', 719], ['1135', '706+429', 779.5], ['1412', '706+706', 960],['2195', '1860+335', 1453],
-      ['2901', '2195+706', 1933], ['3688', '3099+589', 2424], ['5532', '4649+883', 3660],
+      ['1049', '706+343', 719], ['1135', '706+429', 779.5],
+      ['1412', '706+706', 960], // ✅ Added here
+      ['2195', '1860+335', 1453], ['2901', '2195+706', 1933],
+      ['3688', '3099+589', 2424], ['5532', '4649+883', 3660],
       ['9288', '7740+1548', 6079], ['50+', '', 39], ['150+', '', 116.9],
       ['250+', '', 187.5], ['500+', '', 385]
     ];
 
     const tbody = document.getElementById('tableBody');
     const mmkInput = document.getElementById('mmkInput');
-    const profitSelect = document.getElementById('profitSelect');
 
     function createTable() {
       tbody.innerHTML = '';
